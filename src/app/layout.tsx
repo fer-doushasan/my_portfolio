@@ -21,10 +21,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Md. Ferdous Hasan — QA Engineer & AI Developer",
+  title: "Ferdous Hasan | SQA Engineer",
   description:
-    "Portfolio of Md. Ferdous Hasan — Software QA Engineer & AI Application Developer.",
-};
+    "Portfolio of Ferdous Hasan Software QA Engineer.",
+}
 
 export default function RootLayout({
   children,

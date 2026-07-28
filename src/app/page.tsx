@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const EXPERIENCE = [
   {
@@ -325,7 +325,6 @@ const EDUCATION = [
   {
     degree: "Higher Secondary Certificate (Science)",
     institution: "Shishukunja School & College",
-    period: "2019",
     location: "Jhenaidah, Bangladesh",
     color: "var(--amber)",
     bg: "rgba(232,163,61,.12)",
@@ -341,6 +340,20 @@ const EDUCATION = [
 export default function Home() {
   const [openExp, setOpenExp] = useState<number | null>(0);
   const [openEdu, setOpenEdu] = useState<number | null>(0);
+  const [activeSection, setActiveSection] = useState<string>("top");
+  const isNavClickRef = useRef(false);
+  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    isNavClickRef.current = true;
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+    }
+    clickTimeoutRef.current = setTimeout(() => {
+      isNavClickRef.current = false;
+    }, 1000);
+  };
 
   const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -370,6 +383,35 @@ export default function Home() {
     return () => io.disconnect();
   }, []);
 
+  useEffect(() => {
+    const sectionIds = ["top", "about", "experience", "skills", "projects", "certificates", "education", "contact"];
+
+    const handleScroll = () => {
+      if (isNavClickRef.current) return;
+
+      const scrollPosition = window.scrollY + 180;
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+
+      if (isAtBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveSection(sectionIds[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <div className="grain"></div>
@@ -382,19 +424,43 @@ export default function Home() {
         <div className="max-w-5xl mx-auto h-16 flex items-center justify-between">
           <a
             href="#top"
+            onClick={() => handleNavClick("top")}
             className="font-mono text-sm font-semibold tracking-tight w-10 h-10 rounded-lg flex items-center justify-center transition-colors hover:border-[#37424F]"
             style={{ color: "var(--amber)", background: "var(--bg-raised)", border: "1px solid var(--line)" }}
           >
             FH
           </a>
-          <nav className="hidden md:flex items-center gap-8 font-mono text-xs" style={{ color: "var(--ink-dim)" }}>
-            <a href="#about" className="nav-link">About</a>
-            <a href="#experience" className="nav-link">Experience</a>
-            <a href="#skills" className="nav-link">Skills</a>
-            <a href="#projects" className="nav-link">Projects</a>
-            <a href="#certificates" className="nav-link">Certificates</a>
-            <a href="#education" className="nav-link">Education</a>
-            <a href="#contact" className="nav-link">Contact</a>
+          <nav className="hidden md:flex items-center gap-6 font-mono text-xs" style={{ color: "var(--ink-dim)" }}>
+            {[
+              { label: "Home", id: "top" },
+              { label: "About", id: "about" },
+              { label: "Experience", id: "experience" },
+              { label: "Skills", id: "skills" },
+              { label: "Projects", id: "projects" },
+              { label: "Certificates", id: "certificates" },
+              { label: "Education", id: "education" },
+              { label: "Contact", id: "contact" },
+            ].map(({ label, id }) =>
+              activeSection === id ? (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="nav-link-active"
+                  onClick={() => handleNavClick(id)}
+                >
+                  {label}
+                </a>
+              ) : (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="nav-link"
+                  onClick={() => handleNavClick(id)}
+                >
+                  {label}
+                </a>
+              )
+            )}
           </nav>
           <a href="#contact" className="tag tag-live font-mono">
             <span className="dot"></span> Available
@@ -1058,15 +1124,17 @@ export default function Home() {
                             <h3 className="font-display text-lg font-semibold leading-snug">{edu.degree}</h3>
                             <p className="text-sm font-medium mt-1" style={{ color: edu.color }}>{edu.institution}</p>
                             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 font-mono text-xs" style={{ color: "var(--ink-dim)" }}>
-                              <span className="inline-flex items-center gap-1.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <rect x="3" y="4" width="18" height="18" rx="2" />
-                                  <line x1="16" y1="2" x2="16" y2="6" />
-                                  <line x1="8" y1="2" x2="8" y2="6" />
-                                  <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                {edu.period}
-                              </span>
+                              {edu.period && (
+                                <span className="inline-flex items-center gap-1.5">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                  </svg>
+                                  {edu.period}
+                                </span>
+                              )}
                               <span className="inline-flex items-center gap-1.5">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
