@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #12181f;
+  --bg-raised: #181f28;
+  --ink: #edeff2;
+  --ink-dim: #8c99a8;
+  --line: #26303b;
+  --amber: #e8a33d;
+  --teal: #3e9c86;
+  --coral: #d9694f;
+}
+
+@theme inline {
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+::selection {
+  background: var(--amber);
+  color: #12181f;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.tag {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tag-pass {
+  background: rgba(62, 156, 134, 0.12);
+  color: var(--teal);
+  border: 1px solid rgba(62, 156, 134, 0.35);
+}
+
+.tag-live {
+  background: rgba(232, 163, 61, 0.12);
+  color: var(--amber);
+  border: 1px solid rgba(232, 163, 61, 0.35);
+}
+
+.tag-neutral {
+  background: rgba(140, 153, 168, 0.1);
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.card:hover {
+  border-color: #37424f;
+}
+
+@keyframes badge-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes badge-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.badge-float-1 {
+  animation:
+    badge-in 0.6s ease-out 0.2s both,
+    badge-float 3.2s ease-in-out 0.8s infinite;
+}
+
+.badge-float-2 {
+  animation:
+    badge-in 0.6s ease-out 0.4s both,
+    badge-float 3.6s ease-in-out 1s infinite;
+}
+
+.badge-float-3 {
+  animation:
+    badge-in 0.6s ease-out 0.6s both,
+    badge-float 3.4s ease-in-out 1.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-float-1,
+  .badge-float-2,
+  .badge-float-3 {
+    animation: none;
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.fade-up.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.divider {
+  border-top: 1px solid var(--line);
+}
+
+.section-num {
+  font-family: var(--font-jetbrains-mono), monospace;
+  color: var(--ink-dim);
+  font-size: 0.75rem;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  background: var(--amber);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.skill-row {
+  border-bottom: 1px solid var(--line);
+}
+
+.skill-row:last-child {
+  border-bottom: none;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: var(--amber);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
