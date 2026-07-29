@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 const EXPERIENCE = [
   {
     company: "BD Funnel Builder Limited",
-    role: "Junior Software Quality Assurance Engineer",
+    role: "Software QA Engineer",
     period: "April 2026 - Present",
     location: "Dhaka, Bangladesh",
     type: "Onsite",
@@ -25,7 +25,7 @@ const EXPERIENCE = [
   },
   {
     company: "Ravension",
-    role: "AI Application Developer ",
+    role: "Software Engineer (AI)",
     period: "January 2026 – March 2026",
     location: "Dhaka, Bangladesh",
     type: "Contract",
@@ -42,7 +42,7 @@ const EXPERIENCE = [
   },
   {
     company: "Somikoron IT Ltd.",
-    role: "QA & Support Engineer",
+    role: "SQA & Support Engineer",
     period: "January 2025 – December 2025",
     location: "Dhaka, Bangladesh",
     type: "Onsite",
