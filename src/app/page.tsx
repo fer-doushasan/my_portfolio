@@ -10,6 +10,7 @@ const EXPERIENCE = [
     period: "April 2026 - Present",
     location: "Dhaka, Bangladesh",
     type: "Onsite",
+    domain: ["SaaS", "E-commerce"],
     color: "var(--teal)",
     bg: "rgba(62,156,134,.12)",
     responsibilities: [
@@ -29,6 +30,7 @@ const EXPERIENCE = [
     period: "January 2026 – March 2026",
     location: "Dhaka, Bangladesh",
     type: "Contract",
+    domain: ["Web Solutions"],
     color: "var(--amber)",
     bg: "rgba(232,163,61,.12)",
     responsibilities: [
@@ -46,6 +48,7 @@ const EXPERIENCE = [
     period: "January 2025 – December 2025",
     location: "Dhaka, Bangladesh",
     type: "Onsite",
+    domain: ["ERP"],
     color: "var(--coral)",
     bg: "rgba(217,105,79,.12)",
     responsibilities: [
@@ -62,7 +65,7 @@ const EXPERIENCE = [
 
 const PROJECTS = [
   {
-    title: "E-commerce Platform QA",
+    title: "E-commerce Platform Manual & Automation",
     category: "QA Testing Project",
     color: "var(--coral)",
     bg: "rgba(217,105,79,.12)",
@@ -82,8 +85,11 @@ const PROJECTS = [
       "Verified GTM & Facebook Pixel tracking events.",
       "Managed the complete bug reporting and verification lifecycle.",
     ],
-    techStack: ["Manual Testing", "Postman", "API Testing", "Regression Testing", "MySQL", "Jira"],
-    links: [{ label: "Test Deliverables", href: "https://drive.google.com", type: "file" }],
+    techStack: ["Manual Testing", "Playwright", "Postman", "API Testing", "Regression Testing", "MySQL", "Jira"],
+    links: [
+      { label: "Manual", href: "https://drive.google.com", type: "file" },
+      { label: "Automation", href: "https://github.com/fer-doushasan/ecommerce_automation-with-playwright", type: "github" },
+    ],
   },
   {
     title: "ERP Software Testing",
@@ -169,6 +175,28 @@ const PROJECTS = [
     achievements: ["Responsive UI Validation", "Cross-browser Testing", "Performance Verification", "Production Deployment"],
     techStack: ["Next.js", "React", "Node.js", "QA"],
     links: [{ label: "Live Website", href: "https://ravension.com", type: "live" }],
+  },
+  {
+    title: "Personal Portfolio Website",
+    category: "Web Application",
+    color: "var(--teal)",
+    bg: "rgba(62,156,134,.12)",
+    icon: (
+      <>
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </>
+    ),
+    description:
+      "Designed and developed a personal portfolio website to showcase professional experience, projects, certifications, and technical skills with a modern, responsive UI.",
+    achievements: [
+      "Built a fully responsive layout across desktop, tablet, and mobile.",
+      "Implemented smooth scroll animations and interactive sections.",
+      "Structured reusable components for experience, skills, and projects.",
+      "Deployed and open-sourced the codebase on GitHub.",
+    ],
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    links: [{ label: "GitHub", href: "https://github.com/fer-doushasan/my_portfolio", type: "github" }],
   },
 ];
 
@@ -342,6 +370,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("top");
   const isNavClickRef = useRef(false);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleNavClick = (id: string) => {
     setActiveSection(id);
@@ -354,15 +383,28 @@ export default function Home() {
     }, 1000);
   };
 
-  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const name = (formData.get("name") as string) || "";
     const email = (formData.get("email") as string) || "";
-    const subject = (formData.get("subject") as string) || `Portfolio inquiry from ${name}`;
+    const subject = (formData.get("subject") as string) || "";
     const message = (formData.get("message") as string) || "";
-    const body = `${message}\n\n— ${name}${email ? ` (${email})` : ""}`;
-    window.location.href = `mailto:ferdoushasan382@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    setContactStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      if (!res.ok) throw new Error();
+      setContactStatus("success");
+      form.reset();
+    } catch {
+      setContactStatus("error");
+    }
   };
 
   useEffect(() => {
@@ -417,7 +459,7 @@ export default function Home() {
 
       {/* NAV */}
       <header
-        className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-[#12181F]/80 border-b px-6 md:px-8"
+        className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-[#12181F]/80 border-b px-5 sm:px-8 md:px-16 lg:px-[100px]"
         style={{ borderColor: "var(--line)" }}
       >
         <div className="max-w-5xl mx-auto h-16 flex items-center justify-between">
@@ -468,7 +510,8 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative pt-40 pb-28 px-6 md:px-8 border-b" style={{ borderColor: "var(--line)" }}>
+      {/* pt-28 (112px) = navbar height (h-16 = 64px) + ~48px breathing room, replacing pt-40 (160px) which left ~95px of dead space below the fixed navbar */}
+      <section id="top" className="relative pt-28 pb-16 px-5 sm:px-8 md:px-16 lg:px-[100px]">
         <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_auto] gap-16 items-center">
           <div>
             <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[1.05] tracking-tight">
@@ -513,7 +556,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto shrink-0" style={{ width: "260px", height: "260px" }}>
+          <div className="relative mx-auto md:mx-0 md:justify-self-end shrink-0" style={{ width: "260px", height: "260px" }}>
             <div
               className="relative w-full h-full rounded-full overflow-hidden"
               style={{ border: "1px solid var(--line)", background: "var(--bg-raised)" }}
@@ -528,21 +571,21 @@ export default function Home() {
               />
             </div>
 
-            <div className="absolute top-[5%] -right-17">
+            <div className="absolute top-1/2 -translate-y-1/2 -right-6 sm:-right-17">
               <div className="card badge-float-1 px-3 py-2 font-mono text-xs shadow-lg">
                 <div className="font-semibold" style={{ color: "var(--teal)" }}>1.7+ Years</div>
                 <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
               </div>
             </div>
 
-            <div className="absolute top-[55%] -left-22 -translate-y-1/2">
+            <div className="absolute top-1/2 -translate-y-1/2 -left-8 sm:-left-22">
               <div className="card badge-float-2 px-3 py-2 font-mono text-xs shadow-lg">
-                <div className="font-semibold" style={{ color: "var(--amber)" }}>98%</div>
+                <div className="font-semibold" style={{ color: "var(--amber)" }}>97%</div>
                 <div style={{ color: "var(--ink-dim)" }}>Accuracy Rate</div>
               </div>
             </div>
 
-            <div className="absolute top-[65%] -right-32 -translate-y-1/2">
+            <div className="absolute -bottom-9 left-1/2 -translate-x-1/2">
               <div className="card badge-float-3 px-3 py-2 font-mono text-xs shadow-lg whitespace-nowrap">
                 <div className="font-semibold" style={{ color: "var(--coral)" }}>8+ Projects</div>
                 <div style={{ color: "var(--ink-dim)" }}> Successfully Tested </div>
@@ -553,7 +596,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="px-6 md:px-8 py-24 border-b" style={{ borderColor: "var(--line)" }}>
+      <section id="about" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -657,7 +700,7 @@ export default function Home() {
       </section>
 
       {/* EXPERIENCE */}
-      <section id="experience" className="px-6 md:px-8 py-24 border-b" style={{ borderColor: "var(--line)" }}>
+      <section id="experience" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -712,7 +755,12 @@ export default function Home() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-display text-lg font-semibold" style={{ color: job.color }}>{job.company}</h3>
-                        <p className="text-sm font-medium mt-0.5">{job.role}</p>
+                        <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                          <p className="text-sm font-medium">{job.role}</p>
+                          {job.domain.map((d) => (
+                            <span key={d} className="tag font-mono text-xs" style={{ background: job.bg, color: job.color, border: "none" }}>{d}</span>
+                          ))}
+                        </div>
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 font-mono text-xs" style={{ color: "var(--ink-dim)" }}>
                           <span className="inline-flex items-center gap-1.5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -780,7 +828,7 @@ export default function Home() {
       </section>
 
       {/* SKILLS */}
-      <section id="skills" className="px-6 md:px-8 py-24 border-b" style={{ borderColor: "var(--line)" }}>
+      <section id="skills" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -906,7 +954,7 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="px-6 md:px-8 py-24 border-b" style={{ borderColor: "var(--line)" }}>
+      <section id="projects" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -983,7 +1031,7 @@ export default function Home() {
       </section>
 
       {/* CERTIFICATES */}
-      <section id="certificates" className="px-6 md:px-8 py-24 border-b" style={{ borderColor: "var(--line)" }}>
+      <section id="certificates" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -1067,7 +1115,7 @@ export default function Home() {
       </section>
 
       {/* EDUCATION */}
-      <section id="education" className="px-6 md:px-8 py-24 border-b" style={{ borderColor: "var(--line)" }}>
+      <section id="education" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -1193,7 +1241,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="px-6 md:px-8 py-24">
+      <section id="contact" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
         <div className="max-w-5xl mx-auto">
           <div className="text-center">
             <span className="tag tag-live inline-flex mb-5">
@@ -1234,7 +1282,7 @@ export default function Home() {
                 </div>
                 <div className="min-w-0">
                   <div className="font-mono text-xs" style={{ color: "var(--ink-dim)" }}>Phone</div>
-                  <div className="text-sm font-medium">+880 1707-657622</div>
+                  <div className="text-sm font-medium">+880 1518910492</div>
                 </div>
               </a>
 
@@ -1385,24 +1433,35 @@ export default function Home() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full font-mono text-sm px-6 py-3 rounded-md inline-flex items-center justify-center gap-2"
+                  disabled={contactStatus === "sending"}
+                  className="w-full font-mono text-sm px-6 py-3 rounded-md inline-flex items-center justify-center gap-2 disabled:opacity-60"
                   style={{ background: "var(--teal)", color: "#12181F" }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
-                  Send Message
+                  {contactStatus === "sending" ? "Sending..." : "Send Message"}
                 </button>
+                {contactStatus === "success" && (
+                  <p className="text-sm text-center" style={{ color: "var(--teal)" }}>
+                    Message sent successfully! I&apos;ll get back to you soon.
+                  </p>
+                )}
+                {contactStatus === "error" && (
+                  <p className="text-sm text-center" style={{ color: "var(--coral)" }}>
+                    Something went wrong. Please try again or email me directly.
+                  </p>
+                )}
               </form>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="divider px-6 md:px-8 py-8">
+      <footer className="divider px-5 sm:px-8 md:px-16 lg:px-[100px] py-8">
         <div className="max-w-5xl mx-auto flex flex-wrap gap-4 justify-between items-center font-mono text-xs" style={{ color: "var(--ink-dim)" }}>
-          <span>© 2026 Md. Ferdous Hasan</span>
+          <span>© 2026 Ferdous Hasan</span>
 
           <div className="flex items-center gap-4">
             <a href="https://linkedin.com/in/fer-doushasan" target="_blank" rel="noopener" className="nav-link hover:text-[--ink] transition-colors" aria-label="LinkedIn">
