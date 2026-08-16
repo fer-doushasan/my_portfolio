@@ -14,13 +14,13 @@ const EXPERIENCE = [
     color: "var(--teal)",
     bg: "rgba(62,156,134,.12)",
     responsibilities: [
-      "Designed and executed test cases and QA checklists for a web-based e-commerce platform.",
-      "Performed Functional, Regression, Smoke, Sanity, and API Testing.",
-      "Validated end-to-end workflows including Signup, Login, Shop Creation, Order Placement, and Delivery.",
-      "Tested courier integrations, payment gateways, and order management workflows.",
-      "Verified platform add-ons including SMS, Fake Order, Call Automation, and WooCommerce.",
-      "Conducted Landing Page QA and validated GTM & Facebook Pixel events.",
-      "Identified, documented, and tracked defects throughout the software development lifecycle.",
+      "Designed and executed test cases, QA checklists, and bug reports for a web-based e-commerce platform.",
+      "Performed Manual and Automation Testing, including Functional, Regression, Smoke, Sanity, and API Testing.",
+      "Validated end-to-end user flows including Signup, Login, Shop Creation, Domain Pointing, Drag-and-Drop E-commerce & Landing Page Builder, Order Placement, and Delivery.",
+      "Handled Order Management, Courier Integration, and Payment workflows to verify accurate status synchronization.",
+      "Validated third-party integrations, including SMS, Call Automation, Call Center & WooCommerce.",
+      "Identified, documented, and tracked defects proactively (pre-deployment) and reactively (support-reported).",
+      "Conducted Landing Page QA and validated Google Tag Manager & Facebook Pixel events (Page View, Add to Cart, Checkout & Purchase) to ensure accurate tracking and analytics.",
     ],
     techStack: ["Manual Testing", "Automation Testing", "API Testing", "REST API", "Playwright", "Postman", "MySQL", "GTM", "Facebook Pixel", "Git"],
   },
@@ -229,7 +229,7 @@ const CERTIFICATES = [
   {
     title: "SQA: Manual & Automated Testing",
     by: "Ostad",
-    duration: "4 Months (Approx.)",
+    duration: "6 Months",
     date: "March 2026",
     color: "var(--teal)",
     bg: "rgba(62,156,134,.12)",
@@ -265,7 +265,7 @@ const CERTIFICATES = [
   {
     title: "Python for Data Science, AI & Development",
     by: "Coursera",
-    duration: "40+ Hours (Approx.)",
+    duration: "3 Months",
     date: "December 2024",
     color: "var(--coral)",
     bg: "rgba(217,105,79,.12)",
@@ -572,23 +572,23 @@ export default function Home() {
               />
             </div>
 
-            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -right-6 sm:-right-17">
+            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -right-6 sm:-right-20">
               <div className="card badge-float-1 px-3 py-2 font-mono text-xs shadow-lg">
-                <div className="font-semibold" style={{ color: "var(--teal)" }}>1.7+ Years</div>
+                <div className="font-semibold text-center" style={{ color: "var(--teal)" }}>1.8+ Years</div>
                 <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
               </div>
             </div>
 
-            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -left-8 sm:-left-22">
+            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -left-6 sm:-left-20">
               <div className="card badge-float-2 px-3 py-2 font-mono text-xs shadow-lg">
-                <div className="font-semibold" style={{ color: "var(--amber)" }}>97%</div>
+                <div className="font-semibold text-center" style={{ color: "var(--amber)" }}>97%</div>
                 <div style={{ color: "var(--ink-dim)" }}>Accuracy Rate</div>
               </div>
             </div>
 
             <div className="hidden sm:block absolute -bottom-9 left-1/2 -translate-x-1/2">
               <div className="card badge-float-3 px-3 py-2 font-mono text-xs shadow-lg whitespace-nowrap">
-                <div className="font-semibold" style={{ color: "var(--coral)" }}>8+ Projects</div>
+                <div className="font-semibold text-center" style={{ color: "var(--coral)" }}>8+ Projects</div>
                 <div style={{ color: "var(--ink-dim)" }}> Successfully Tested </div>
               </div>
             </div>
@@ -600,7 +600,7 @@ export default function Home() {
               <div style={{ color: "var(--ink-dim)" }}>Accuracy Rate</div>
             </div>
             <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
-              <div className="font-semibold" style={{ color: "var(--teal)" }}>1.7+ Years</div>
+              <div className="font-semibold" style={{ color: "var(--teal)" }}>1.8+ Years</div>
               <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
             </div>
             <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
@@ -634,7 +634,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xl font-semibold font-display" style={{ color: "var(--teal)" }}>1.7+</div>
+                  <div className="text-xl font-semibold font-display" style={{ color: "var(--teal)" }}>1.8+</div>
                   <div className="font-mono text-xs" style={{ color: "var(--ink-dim)" }}>Years Experience</div>
                 </div>
               </div>
@@ -687,19 +687,24 @@ export default function Home() {
                   building high-quality, scalable, and reliable products through analytical thinking,
                   careful problem-solving, and a habit of continuous learning.
                 </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["Analytical Thinking", "Attention to Detail", "Clear Communication", "Team Collaboration", "Continuous Learner", "Problem Solving"].map((strength) => (
+                    <span key={strength} className="tag tag-neutral whitespace-nowrap">{strength}</span>
+                  ))}
+                </div>
               </div>
 
               <div className="card p-6 md:p-7">
                 <h3 className="font-display text-xl font-semibold mb-4">Key Highlights</h3>
                 <ul className="space-y-3 text-sm" style={{ color: "var(--ink-dim)" }}>
                   {[
-                    "1.7+ years of professional Software Quality Assurance experience",
-                    "Expertise in Manual, Exploratory, Functional, Regression, Smoke, Sanity, and API Testing",
-                    "Experienced with Postman, Playwright, Selenium, JMeter, MySQL, Git, and GitHub",
+                    "1.8+ years of professional Software Quality Assurance experience",
+                    "Expertise in Manual, Automation, Exploratory, Functional, Regression, Smoke, Sanity, and API Testing",
+                    "Experienced with Postman, Cypress, Playwright, Selenium, JMeter, MySQL, Git, and GitHub",
                     "Strong knowledge of SDLC, STLC, Agile Scrum, and Defect Lifecycle",
                     "Validated e-commerce workflows including Orders, Payments, Courier Integration, GTM, and Facebook Pixel",
                     "Skilled in bug reporting, requirement analysis, and release validation",
-                    "Passionate about continuous learning in Automation Testing and AI-assisted Quality Engineering",
+                    "Passionate about continuous learning in Automation Testing, DevOps, and AI-assisted Quality Engineering",
                   ].map((item) => (
                     <li key={item} className="flex gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 mt-0.5" style={{ color: "var(--teal)" }}>
@@ -872,7 +877,7 @@ export default function Home() {
                   color: "var(--amber)",
                   bg: "rgba(232,163,61,.12)",
                   title: "Automation Testing",
-                  items: ["Selenium", "Playwright", "TestNG", "Newman", "Basic Automation Framework", "Web Automation"],
+                  items: ["Cypress", "Playwright", "Selenium", "Appium", "TestNG", "Newman", "Web Automation"],
                 },
                 {
                   icon: (
@@ -884,7 +889,7 @@ export default function Home() {
                   color: "var(--teal)",
                   bg: "rgba(62,156,134,.12)",
                   title: "API Testing",
-                  items: ["Postman", "REST API", "Swagger", "API Validation", "CRUD Testing", "API Authorization", "Response Validation"],
+                  items: ["Postman", "REST API", "Swagger", "CRUD Testing", "API Validation", "API Authorization", "Response Validation"],
                 },
                 {
                   icon: (
@@ -916,7 +921,7 @@ export default function Home() {
                   color: "var(--coral)",
                   bg: "rgba(217,105,79,.12)",
                   title: "Tools",
-                  items: ["Git", "GitHub", "JMeter", "Jira", "Trello", "TestRail", "Claude Code", "Cursor", "VS Code"],
+                  items: ["Git", "GitHub", "JMeter", "Jira", "Trello", "TestRail", "Claude Code", "Cursor", "VS Code", "Vercel", "Hostinger"],
                 },
                 {
                   icon: (
