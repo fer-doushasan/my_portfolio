@@ -26,7 +26,7 @@ const EXPERIENCE = [
   },
   {
     company: "Ravension.Com",
-    role: "Software Engineer (AI)",
+    role: "Software Engineer (AI-Powered)",
     period: "January 2026 – March 2026",
     location: "Dhaka, Bangladesh",
     type: "Contract",
@@ -44,7 +44,7 @@ const EXPERIENCE = [
   },
   {
     company: "Somikoron IT Ltd.",
-    role: "SQA & Support Engineer",
+    role: "Jr. SQA Engineer",
     period: "January 2025 – December 2025",
     location: "Dhaka, Bangladesh",
     type: "Onsite",
@@ -518,7 +518,8 @@ export default function Home() {
               Ferdous Hasan
             </h1>
             <p className="font-display mt-3 text-xl md:text-2xl font-semibold" style={{ color: "var(--teal)" }}>
-              Software Quality Assurance Engineer
+              <span className="md:hidden">Software QA Engineer</span>
+              <span className="hidden md:inline">Software Quality Assurance Engineer</span>
             </p>
             <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed" style={{ color: "var(--ink-dim)" }}>
               Transforming complex software into reliable products through thorough testing, defect analysis, and collaborative quality assurance. Committed to delivering seamless digital experiences with precision and care.
