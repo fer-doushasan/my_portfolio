@@ -365,8 +365,8 @@ const EDUCATION = [
 ];
 
 export default function Home() {
-  const [openExp, setOpenExp] = useState<number | null>(0);
-  const [openEdu, setOpenEdu] = useState<number | null>(0);
+  const [openExp, setOpenExp] = useState<number | null>(null);
+  const [openEdu, setOpenEdu] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState<string>("top");
   const isNavClickRef = useRef(false);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -556,7 +556,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto md:mx-0 md:justify-self-end shrink-0" style={{ width: "260px", height: "260px" }}>
+          <div className="relative mx-auto md:mx-0 md:justify-self-end shrink-0 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px]">
             <div
               className="relative w-full h-full rounded-full overflow-hidden"
               style={{ border: "1px solid var(--line)", background: "var(--bg-raised)" }}
@@ -565,31 +565,46 @@ export default function Home() {
                 src="/Ferdous.jpeg"
                 alt="Md. Ferdous Hasan"
                 fill
-                sizes="260px"
+                sizes="(max-width: 639px) 200px, 260px"
                 className="object-cover"
                 priority
               />
             </div>
 
-            <div className="absolute top-1/2 -translate-y-1/2 -right-6 sm:-right-17">
+            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -right-6 sm:-right-17">
               <div className="card badge-float-1 px-3 py-2 font-mono text-xs shadow-lg">
                 <div className="font-semibold" style={{ color: "var(--teal)" }}>1.7+ Years</div>
                 <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
               </div>
             </div>
 
-            <div className="absolute top-1/2 -translate-y-1/2 -left-8 sm:-left-22">
+            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -left-8 sm:-left-22">
               <div className="card badge-float-2 px-3 py-2 font-mono text-xs shadow-lg">
                 <div className="font-semibold" style={{ color: "var(--amber)" }}>97%</div>
                 <div style={{ color: "var(--ink-dim)" }}>Accuracy Rate</div>
               </div>
             </div>
 
-            <div className="absolute -bottom-9 left-1/2 -translate-x-1/2">
+            <div className="hidden sm:block absolute -bottom-9 left-1/2 -translate-x-1/2">
               <div className="card badge-float-3 px-3 py-2 font-mono text-xs shadow-lg whitespace-nowrap">
                 <div className="font-semibold" style={{ color: "var(--coral)" }}>8+ Projects</div>
                 <div style={{ color: "var(--ink-dim)" }}> Successfully Tested </div>
               </div>
+            </div>
+          </div>
+
+          <div className="flex sm:hidden flex-wrap justify-center gap-2">
+            <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
+              <div className="font-semibold" style={{ color: "var(--amber)" }}>97%</div>
+              <div style={{ color: "var(--ink-dim)" }}>Accuracy Rate</div>
+            </div>
+            <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
+              <div className="font-semibold" style={{ color: "var(--teal)" }}>1.7+ Years</div>
+              <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
+            </div>
+            <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
+              <div className="font-semibold" style={{ color: "var(--coral)" }}>8+ Projects</div>
+              <div style={{ color: "var(--ink-dim)" }}>Successfully Tested</div>
             </div>
           </div>
         </div>
@@ -828,7 +843,7 @@ export default function Home() {
       </section>
 
       {/* SKILLS */}
-      <section id="skills" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
+      <section id="skills" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-10 sm:py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -941,7 +956,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-12 text-center">
+            <div className="mt-8 sm:mt-12 text-center">
               <h3 className="font-display text-xl font-semibold mb-5">Programming Languages</h3>
               <div className="flex flex-wrap justify-center gap-2">
                 {["JavaScript", "TypeScript", "Python", "SQL", "Dart", "HTML5", "CSS3"].map((lang) => (
@@ -954,7 +969,7 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
+      <section id="projects" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-10 sm:py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
@@ -1031,7 +1046,7 @@ export default function Home() {
       </section>
 
       {/* CERTIFICATES */}
-      <section id="certificates" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-16">
+      <section id="certificates" className="px-5 sm:px-8 md:px-16 lg:px-[100px] py-10 sm:py-16">
         <div className="max-w-5xl mx-auto">
           <div className="fade-up">
             <div className="text-center">
