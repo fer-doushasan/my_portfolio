@@ -65,6 +65,55 @@ const EXPERIENCE = [
 
 const PROJECTS = [
   {
+    title: "Thaura AI — AI Application Testing",
+    category: "AI QA Testing Project",
+    color: "var(--coral)",
+    bg: "rgba(217,105,79,.12)",
+    icon: (
+      <>
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <path d="M15 2v2M9 2v2M15 20v2M9 20v2M20 15h2M20 9h2M2 15h2M2 9h2" />
+      </>
+    ),
+    description:
+      "Tested Thaura AI, an AI-powered web application, focusing on functional, API, session, memory, quota, and rate-limit testing to ensure reliable AI interactions.",
+    achievements: [
+      "Designed and executed 70+ test cases covering functional and API flows.",
+      "Validated session handling and conversational memory persistence.",
+      "Tested quota enforcement and rate-limit behavior under load.",
+      "Documented findings with supporting evidence for each test case.",
+    ],
+    techStack: ["Manual Testing", "API Testing", "Session Testing", "Postman", "AI Testing"],
+    links: [{ label: "GitHub", href: "https://github.com/fer-doushasan/thaura-ai-testing", type: "github" }],
+  },
+  {
+    title: "Medha AI — AI Productivity & Agent Platform",
+    category: "AI QA Testing Project",
+    color: "var(--amber)",
+    bg: "rgba(232,163,61,.12)",
+    icon: (
+      <>
+        <path d="M12 8V4H8" />
+        <rect width="16" height="12" x="4" y="8" rx="2" />
+        <path d="M2 14h2" />
+        <path d="M20 14h2" />
+        <path d="M15 13v2" />
+        <path d="M9 13v2" />
+      </>
+    ),
+    description:
+      "Performed QA for Medha AI, an AI-powered productivity and agent platform featuring AI chat, agents, skills, RAG, vision, content workflows, projects, integrations, scheduled posts, and AI worker orchestration.",
+    achievements: [
+      "Validated AI chat, agents, and skills across varied workflows.",
+      "Tested RAG and vision-based features for accuracy and reliability.",
+      "Verified content workflows, integrations, and scheduled posts.",
+      "Assessed AI worker orchestration across projects.",
+    ],
+    techStack: ["Manual Testing", "AI Testing", "API Testing", "RAG", "Functional Testing"],
+    links: [{ label: "GitHub", href: "https://github.com/fer-doushasan/medha-ai-testing", type: "github" }],
+  },
+  {
     title: "E-commerce Platform Manual & Automation",
     category: "QA Testing Project",
     color: "var(--coral)",
