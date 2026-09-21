@@ -623,7 +623,7 @@ export default function Home() {
 
             <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -right-6 sm:-right-20">
               <div className="card badge-float-1 px-3 py-2 font-mono text-xs shadow-lg">
-                <div className="font-semibold text-center" style={{ color: "var(--teal)" }}>1.8+ Years</div>
+                <div className="font-semibold text-center" style={{ color: "var(--teal)" }}>2+ Years</div>
                 <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
               </div>
             </div>
@@ -637,7 +637,7 @@ export default function Home() {
 
             <div className="hidden sm:block absolute -bottom-9 left-1/2 -translate-x-1/2">
               <div className="card badge-float-3 px-3 py-2 font-mono text-xs shadow-lg whitespace-nowrap">
-                <div className="font-semibold text-center" style={{ color: "var(--coral)" }}>8+ Projects</div>
+                <div className="font-semibold text-center" style={{ color: "var(--coral)" }}>10+ Projects</div>
                 <div style={{ color: "var(--ink-dim)" }}> Successfully Tested </div>
               </div>
             </div>
@@ -649,11 +649,11 @@ export default function Home() {
               <div style={{ color: "var(--ink-dim)" }}>Accuracy Rate</div>
             </div>
             <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
-              <div className="font-semibold" style={{ color: "var(--teal)" }}>1.8+ Years</div>
+              <div className="font-semibold" style={{ color: "var(--teal)" }}>2+ Years</div>
               <div style={{ color: "var(--ink-dim)" }}>QA Experience</div>
             </div>
             <div className="card px-3 py-2 font-mono text-xs shadow-lg text-center">
-              <div className="font-semibold" style={{ color: "var(--coral)" }}>8+ Projects</div>
+              <div className="font-semibold" style={{ color: "var(--coral)" }}>10+ Projects</div>
               <div style={{ color: "var(--ink-dim)" }}>Successfully Tested</div>
             </div>
           </div>
@@ -683,7 +683,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xl font-semibold font-display" style={{ color: "var(--teal)" }}>1.8+</div>
+                  <div className="text-xl font-semibold font-display" style={{ color: "var(--teal)" }}>2+</div>
                   <div className="font-mono text-xs" style={{ color: "var(--ink-dim)" }}>Years Experience</div>
                 </div>
               </div>
@@ -695,7 +695,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xl font-semibold font-display" style={{ color: "var(--amber)" }}>8+</div>
+                  <div className="text-xl font-semibold font-display" style={{ color: "var(--amber)" }}>10+</div>
                   <div className="font-mono text-xs" style={{ color: "var(--ink-dim)" }}>Projects</div>
                 </div>
               </div>
@@ -747,7 +747,7 @@ export default function Home() {
                 <h3 className="font-display text-xl font-semibold mb-4">Key Highlights</h3>
                 <ul className="space-y-3 text-sm" style={{ color: "var(--ink-dim)" }}>
                   {[
-                    "1.8+ years of professional Software Quality Assurance experience",
+                    "2+ years of professional Software Quality Assurance experience",
                     "Expertise in Manual, Automation, Exploratory, Functional, Regression, Smoke, Sanity, and API Testing",
                     "Experienced with Postman, Cypress, Playwright, Selenium, JMeter, MySQL, Git, and GitHub",
                     "Strong knowledge of SDLC, STLC, Agile Scrum, and Defect Lifecycle",
