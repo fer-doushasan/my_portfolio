@@ -26,7 +26,7 @@ const EXPERIENCE = [
   },
   {
     company: "Ravension.Com",
-    role: "Software Engineer (AI-Powered)",
+    role: "Software Engineer (Development & QA)",
     period: "January 2026 – March 2026",
     location: "Dhaka, Bangladesh",
     type: "Contract",
